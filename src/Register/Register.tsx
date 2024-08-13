@@ -10,7 +10,7 @@ export const Register = () => {
             var dataObj = {
                 "data": data
             }
-            const res = await fetch('http://localhost:2020/std/register', {
+            const res = await fetch('https://9am-server.vercel.app/std/register', {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json', // Sending JSON
@@ -20,10 +20,17 @@ export const Register = () => {
 
             })
             const result = await res.json()
-            console.log(result);
+            const { acknowledged, insertedId } = result;
+            if (acknowledged && insertedId) {
+                alert('success')
+            } else {
+                alert('fail')
+            }
 
-        } catch (ex) {
+
+        } catch (ex: any) {
             console.error(ex);
+            alert(ex.message);
         }
     }
 
