@@ -1,4 +1,4 @@
 export const init = {
-    isLoggedIn: sessionStorage.user,
+    isLoggedIn: sessionStorage?.user,
     user: ''
 }
