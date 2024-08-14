@@ -5,22 +5,23 @@ import "./globals.css";
 import { Login } from "@/Login";
 import { appStore } from '../redux/store'
 import { Provider, useSelector } from "react-redux";
-import LayoutWrapper from "./layoutWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 
 
-export default function RootLayout({
+export default function LayoutWrapper({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
+  const isLoggedIn = useSelector((state: any) => {
+    return state?.appReducer?.isLoggedIn
+  })
   return (
     <html lang="en">
       <body className={inter.className}>
         <Provider store={appStore}>
-          <LayoutWrapper children={children} />
+          {isLoggedIn ? children : <Login />}
         </Provider>
 
       </body>
