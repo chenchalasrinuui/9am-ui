@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Login } from "@/Login";
 import { appStore } from '../redux/store'
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import LayoutWrapper from "./layoutWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +15,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
 
   return (
     <html lang="en">

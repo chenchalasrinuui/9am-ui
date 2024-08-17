@@ -15,10 +15,10 @@ export const Login = () => {
     const handleClick = async () => {
         try {
             const res = await Ajax.sendPostReq("std/login", data)
-            console.log(res);
             if (res?.data?.length > 0) {
                 if (typeof window !== 'undefined') {
-                    sessionStorage.user = res?.data?.[0]?.uid
+                    sessionStorage.user = res?.data?.[0]?.uid;
+                    sessionStorage.token = res?.data?.[0]?.token
                 }
                 dispatch({ type: "LOGIN", payload: { isLoggedIn: true, user: res?.data?.[0]?.uid } })
             } else {

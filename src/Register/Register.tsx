@@ -1,4 +1,5 @@
 "use client"
+import { Ajax } from '@/services/Ajax'
 import React, { useState } from 'react'
 
 export const Register = () => {
@@ -10,17 +11,8 @@ export const Register = () => {
             var dataObj = {
                 "data": data
             }
-            const res = await fetch('https://9am-server.vercel.app/std/register', {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json', // Sending JSON
-                    // Add any other headers you need
-                },
-                body: JSON.stringify(dataObj),
-
-            })
-            const result = await res.json()
-            const { acknowledged, insertedId } = result;
+            const res = await Ajax.sendPostReq('std/register', dataObj)
+            const { acknowledged, insertedId } = res?.data;
             if (acknowledged && insertedId) {
                 alert('success')
             } else {
