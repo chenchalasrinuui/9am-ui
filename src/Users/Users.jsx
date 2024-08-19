@@ -49,7 +49,7 @@ export const Users = () => {
     }, [])
 
     handleEdit = (row) => {
-        sessionStorage.setItem(row, JSON.stringify(row))
+        sessionStorage.setItem("row", JSON.stringify(row))
         dispatch({ type: "MODAL", payload: true })
     }
     return (
