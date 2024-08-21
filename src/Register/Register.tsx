@@ -1,9 +1,9 @@
 "use client"
 import { Ajax } from '@/services/Ajax'
 import React, { useState } from 'react'
-
+import { useDispatch, UseDispatch } from 'react-redux'
 export const Register = () => {
-
+    const dispatch = useDispatch();
     const [data, setData] = useState({})
 
     const fnRegister = async () => {
@@ -14,6 +14,7 @@ export const Register = () => {
             const res = await Ajax.sendPostReq('std/register', dataObj)
             const { acknowledged, insertedId } = res?.data;
             if (acknowledged && insertedId) {
+                dispatch({ type: "GET_STUDENTS" })
                 alert('success')
             } else {
                 alert('fail')
