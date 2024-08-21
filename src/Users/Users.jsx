@@ -48,13 +48,20 @@ export const Users = () => {
     const handleDelete = async (row) => {
         const bool = confirm("R u sure...")
         if (bool) {
-            const res = await Ajax.sendDeleteReq(`std/delete-std/${row?._id}`)
-            const { acknowledged, deletedCount } = res?.data;
-            if (acknowledged && deletedCount) {
-                dispatch({ type: "GET_STUDENTS" })
-                alert('success')
-            } else {
-                alert('fail')
+            try {
+                dispatch({ type: "LOADER", payload: true })
+                const res = await Ajax.sendDeleteReq(`std/delete-std/${row?._id}`)
+                const { acknowledged, deletedCount } = res?.data;
+                if (acknowledged && deletedCount) {
+                    dispatch({ type: "GET_STUDENTS" })
+                    alert('success')
+                } else {
+                    alert('fail')
+                }
+            } catch (ex) {
+
+            } finally {
+                dispatch({ type: "LOADER", payload: false })
             }
         }
 

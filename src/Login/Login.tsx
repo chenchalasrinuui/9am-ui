@@ -14,6 +14,7 @@ export const Login = () => {
 
     const handleClick = async () => {
         try {
+            dispatch({ type: "LOADER", payload: true })
             const res = await Ajax.sendPostReq("std/login", data)
             if (res?.data?.length > 0) {
                 if (typeof window !== 'undefined') {
@@ -26,6 +27,8 @@ export const Login = () => {
             }
         } catch (ex) {
 
+        } finally {
+            dispatch({ type: "LOADER", payload: false })
         }
 
     }

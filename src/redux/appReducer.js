@@ -17,6 +17,11 @@ export const appReducer = (state = init, action) => {
                 ...state,
                 ...action.payload
             }
+        case 'LOADER':
+            return {
+                ...state,
+                isShowLoader: action.payload
+            }
         default:
             return state;
     }

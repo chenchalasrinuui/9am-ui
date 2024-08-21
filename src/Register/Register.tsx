@@ -11,6 +11,7 @@ export const Register = () => {
             var dataObj = {
                 "data": data
             }
+            dispatch({ type: "LOADER", payload: true })
             const res = await Ajax.sendPostReq('std/register', dataObj)
             const { acknowledged, insertedId } = res?.data;
             if (acknowledged && insertedId) {
@@ -24,6 +25,9 @@ export const Register = () => {
         } catch (ex: any) {
             console.error(ex);
             alert(ex.message);
+        }
+        finally {
+            dispatch({ type: "LOADER", payload: false })
         }
     }
 

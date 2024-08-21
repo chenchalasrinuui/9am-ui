@@ -14,6 +14,7 @@ export const Modal = () => {
             var dataObj = {
                 "data": data
             }
+            dispatch({ type: "LOADER", payload: true })
             const res = await Ajax.sendPutReq(`std/update-std?id=${id}`, dataObj)
             const { acknowledged, modifiedCount } = res?.data;
             if (acknowledged && modifiedCount) {
@@ -29,6 +30,8 @@ export const Modal = () => {
         } catch (ex: any) {
             console.error(ex);
             alert(ex.message);
+        } finally {
+            dispatch({ type: "LOADER", payload: false })
         }
     }
 
